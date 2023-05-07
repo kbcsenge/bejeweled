@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="icon" href="kepek/egyeb/icon.png">
+    <title>Játék</title>
+</head>
+<body>
+<canvas id="vaszon" width="1000%" height="80"></canvas>
+<button id="zene"><img style="width: 100px; height:100px" id="csengo" alt="hang" src="kepek/egyeb/nincshang.png">
+</button>
+<div class="flexbox">
+    <div class="begyujtott">
+        <p style="font-weight: bold">BEGYŰJTÖTT KÖVEK: </p> <br><br>
+        <img id="piroskep" src="kepek/dragakovek/piros.png" alt="piros rubint"> <span id="piros"> 0</span> / 10 <br><br>
+        <img id="narancskep" src="kepek/dragakovek/narancs.png" alt="narancs opál"> <span id="narancs"> 0</span> / 10 <br><br>
+        <img id="sargakep" src="kepek/dragakovek/sarga.png" alt="sárga smaragd"> <span id="sarga"> 0</span> / 10 <br><br>
+        <img id="zoldkep" src="kepek/dragakovek/zold.png" alt="zöld berill"> <span id="zold"> 0</span> / 10 <br><br>
+        <img id="turkiszkep" src="kepek/dragakovek/turkisz.png" alt="türkisz apatit"> <span id="turkisz"> 0</span> / 10 <br><br>
+        <img id="kekkep" src="kepek/dragakovek/kek.png" alt="kék gyémánt"> <span id="kek"> 0</span> / 10 <br><br>
+        <img id="lilakep" src="kepek/dragakovek/lila.png" alt="lila ametiszt"> <span id="lila"> 0</span> / 10 <br><br>
+        <img id="pinkkep" src="kepek/dragakovek/pink.png" alt="pink zafír"> <span id="pink"> 0</span> / 10
+    </div>
+    <div>
+        <h3>PONTSZÁM: <span id="eredmeny">0</span></h3>
+        <h3>IDŐ: <span id="ido">60 s</span></h3>
+        <div id="jatekter" class="disabled"></div>
+        <br>
+        <button id="startGomb" onclick="startJatek()">Új játék</button>
+        <button id="hint">Segítség</button>
+    </div>
+    <div class="toplista">
+        <p style="font-weight: bold">TOPLISTA:</p>
+        <ol id="lista"></ol>
+    </div>
+</div>
+<script type="text/javascript" src="jatek/JatekKezelo.js"></script>
+<script type="text/javascript" src="jatek/Palya.js"></script>
+<script type="text/javascript" src="jatek/Drag.js"></script>
+<script type="text/javascript" src="jatek/Streak.js"></script>
+<script type="text/javascript" src="jatek/Hang.js"></script>
+<script type="text/javascript" src="jatek/jq.js"></script>
+<script>
+    var cim = document.getElementById("vaszon");
+    var ctx = cim.getContext("2d");
+    ctx.font = "bold 60px Tahoma";
+    ctx.textAlign = "center";
+    var grd = ctx.createLinearGradient(0, 0, 0, 50);
+    grd.addColorStop(0, "white");
+    grd.addColorStop(1, "#e170d0");
+    ctx.fillStyle = grd;
+    ctx.lineWidth = 3;
+    ctx.border = "grey 10px solid"
+    ctx.fillText("BEJEWELED", 550, 50);
+    ctx.strokeText("BEJEWELED", 550, 50);
+
+    $('#zene').click(function () {
+        if ($(this).children('img').attr("src") === "kepek/egyeb/nincshang.png") {
+            document.getElementById("csengo").src = "kepek/egyeb/hang.png";
+            startZene();
+        } else {
+            document.getElementById("csengo").src = "kepek/egyeb/nincshang.png";
+            megallitZene();
+        }
+    });
+
+    $('#hint').click( function (){
+        gombLenyomHang();
+        window.alert("A játék célja: \n\nEgy sorban vagy oszlopban 3-4-5 azonos drágakő kiütése.\n\nAmennyiben egy drágakőből legalább 10 darabot összeszedünk, pontszámunk 100-zal nő, emellett 10 másodperc plusz idő jár.\n\nA mozgatni kívánt drágakövet úgy lehet cserélni a szomszédjával, hogy megfogjuk az egérrel és ráhúzzuk. Értelemszerűen, ha nem szomszédra húzzuk rá vagy nem kapunk streak-et, a csere nem történik meg.");
+    })
+</script>
+</body>
+</html>
