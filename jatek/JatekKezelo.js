@@ -72,7 +72,7 @@ function startJatek() {
     gombLenyomHang();
     document.getElementById("startGomb").classList.add('disabled');
     startHangJatsz();
-
+    idoHatra=60;
     window.setInterval(function () {
         streak();
         szaz();

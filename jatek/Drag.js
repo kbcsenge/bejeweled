@@ -21,9 +21,9 @@ function dragEnd() {
     let jelen = jelenlegi_mezo.id.split("-");
     let s = parseInt(jelen[0]);
     let m = parseInt(jelen[1]);
-    let otherCoords = cel_mezo.id.split("-");
-    let ss = parseInt(otherCoords[0]);
-    let mm = parseInt(otherCoords[1]);
+    let masik = cel_mezo.id.split("-");
+    let ss = parseInt(masik[0]);
+    let mm = parseInt(masik[1]);
     let balszomszed = mm === m - 1 && s === ss;
     let jobbszomszed = mm === m + 1 && s === ss;
     let felsoszomszed = ss === s - 1 && m === mm;
